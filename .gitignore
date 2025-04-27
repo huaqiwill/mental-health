@@ -1,4 +1,6 @@
 ######################################################################
+# macOS system files
+.DS_Store
 # Build Tools
 
 .gradle
