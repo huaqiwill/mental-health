@@ -1,9 +1,30 @@
 {
+	"easycom": {
+		"autoscan": true,
+		// 注意一定要放在custom里，否则无效，https://ask.dcloud.net.cn/question/131175
+		"custom": {
+			"^u--(.*)": "uview-plus/components/u-$1/u-$1.vue",
+			"^up-(.*)": "uview-plus/components/u-$1/u-$1.vue",
+			"^u-([^-].*)": "uview-plus/components/u-$1/u-$1.vue"
+		}
+	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "首页"
+			}
+		},
+		{
+			"path": "pages/course/index",
+			"style": {
+				"navigationBarTitleText": "课程"
+			}
+		},
+		{
+			"path": "pages/profile/index",
+			"style": {
+				"navigationBarTitleText": "我的"
 			}
 		}
 	],
@@ -13,5 +34,32 @@
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	},
-	"uniIdRouter": {}
+	"uniIdRouter": {},
+	"tabBar": {
+		"color": "",
+		"selectedColor": "",
+		"backgroundColor": "",
+		"position": "bottom",
+		"borderStyle": "black",
+		"list": [{
+				"pagePath": "pages/index/index",
+				"text": "首页"
+				// "iconPath": "static/images/home.png",
+				// "selectedIconPath": "static/images/home-active.png"
+			},
+			{
+				"pagePath": "pages/course/index",
+				"text": "课程"
+				// "iconPath": "static/images/course.png",
+				// "selectedIconPath": "static/images/course-active.png"
+			},
+			{
+				"pagePath": "pages/profile/index",
+				"text": "我的"
+				// "iconPath": "static/images/profile.png",
+				// "selectedIconPath": "static/images/profile-active.png"
+			}
+		]
+	}
+
 }
