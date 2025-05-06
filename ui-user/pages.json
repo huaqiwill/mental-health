@@ -94,6 +94,12 @@
 			}
 		},
 		{
+			"path": "pages/profile/MyFavorite/index",
+			"style": {
+				"navigationBarTitleText": "我的收藏"
+			}
+		},
+		{
 			"path": "pages/login/index",
 			"style": {
 				"navigationBarTitleText": "登录"

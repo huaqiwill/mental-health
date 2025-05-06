@@ -24,7 +24,7 @@
           <text class="item-arrow">›</text>
         </view>
         
-        <view class="menu-item" @click="navigateTo('/pages/favorite/index')">
+        <view class="menu-item" @click="navigateTo('/pages/profile/MyFavorite/index')">
           <view class="icon-wrap favorite-icon"></view>
           <text class="item-text">我的收藏</text>
           <text class="item-arrow">›</text>
