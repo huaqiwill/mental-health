@@ -2,7 +2,6 @@
 # macOS system files
 .DS_Store
 # Build Tools
-
 .gradle
 /build/
 !gradle/wrapper/gradle-wrapper.jar
@@ -12,6 +11,9 @@ target/
 
 ######################################################################
 # IDE
+src/main/resources/application.yml
+src/main/resources/application-druild.yml
+manifest.json
 
 ### STS ###
 .apt_generated
