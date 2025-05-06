@@ -126,7 +126,7 @@ const switchTab = (index) => {
 const continueLearning = (courseName) => {
   console.log(`继续学习：${courseName}`);
   uni.navigateTo({
-    url: `/pages/course/player/index?name=${encodeURIComponent(courseName)}`
+    url: `/pages/course/play/index?name=${encodeURIComponent(courseName)}`
   });
 };
 
@@ -134,7 +134,7 @@ const continueLearning = (courseName) => {
 const reviewCourse = (courseName) => {
   console.log(`再次学习：${courseName}`);
   uni.navigateTo({
-    url: `/pages/course/player/index?name=${encodeURIComponent(courseName)}&review=1`
+    url: `/pages/course/play/index?name=${encodeURIComponent(courseName)}&review=1`
   });
 };
 </script>

@@ -28,15 +28,39 @@
 			}
 		},
 		{
+			"path": "pages/course/play/index",
+			"style": {
+				"navigationBarTitleText": "课程播放"
+			}
+		},
+		{
 			"path": "pages/order/index",
 			"style": {
 				"navigationBarTitleText": "订单"
 			}
 		},	
 		{
+			"path": "pages/order/PayPedding/index",
+			"style": {
+				"navigationBarTitleText": "待支付"
+			}
+		},
+		{
+			"path": "pages/order/PaySuccess/index",
+			"style": {
+				"navigationBarTitleText": "支付成功"
+			}
+		},
+		{
 			"path": "pages/profile/index",
 			"style": {
 				"navigationBarTitleText": "我的"
+			}
+		},
+		{
+			"path": "pages/profile/edit/index",
+			"style": {
+				"navigationBarTitleText": "编辑"
 			}
 		},
 		{

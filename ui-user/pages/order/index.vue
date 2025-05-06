@@ -20,7 +20,7 @@
                     <view class="order-header">
                         <text class="order-no">订单号：{{ order.orderNo }}</text>
                         <text class="order-status" :class="getStatusClass(order.status)">{{ getStatusText(order.status)
-                            }}</text>
+                        }}</text>
                     </view>
 
                     <!-- 订单内容 -->
@@ -170,7 +170,9 @@ const getOrderTypeIcon = (type) => {
 
 // 支付订单
 const payOrder = (order) => {
-
+    uni.navigateTo({
+        url: '/pages/order/PayPedding/index'
+    });
 };
 
 // 取消订单
@@ -388,7 +390,7 @@ orderList.value = mockOrders;
 
     .order-actions {
         display: flex;
-        
+
         .custom-button {
             margin-left: 16rpx;
             height: 60rpx;
@@ -400,19 +402,19 @@ orderList.value = mockOrders;
             font-size: 26rpx;
             padding: 0 24rpx;
         }
-        
+
         .primary-button {
             background-color: $mg-primary;
             color: $mg-white;
             border: 1px solid $mg-primary;
         }
-        
+
         .outline-button {
             background-color: transparent;
             color: $mg-primary;
             border: 1px solid $mg-primary;
         }
-        
+
         .cancel-button {
             background-color: transparent;
             color: $mg-text-secondary;

@@ -1,7 +1,7 @@
 <template>
   <view class="profile-page">
     <!-- 顶部个人信息区域 -->
-    <view class="profile-header">
+    <view class="profile-header" @click="navigateTo('/pages/profile/edit/index')">
       <view class="avatar-container">
         <view class="avatar" mode="aspectFill">
           <text>用户头像</text>
