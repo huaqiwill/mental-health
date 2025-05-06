@@ -37,19 +37,19 @@
       <view class="section-title">设置与帮助</view>
       
       <view class="section-items">
-        <view class="menu-item" @click="navigateTo('/pages/customer-service/index')">
+        <view class="menu-item" @click="navigateTo('/pages/profile/CustomService/index')">
           <view class="icon-wrap service-icon"></view>
           <text class="item-text">联系客服</text>
           <text class="item-arrow">›</text>
         </view>
         
-        <view class="menu-item" @click="navigateTo('/pages/privacy/index')">
+        <view class="menu-item" @click="navigateTo('/pages/profile/privacy/index')">
           <view class="icon-wrap privacy-icon"></view>
           <text class="item-text">隐私协议</text>
           <text class="item-arrow">›</text>
         </view>
         
-        <view class="menu-item" @click="navigateTo('/pages/agreement/index')">
+        <view class="menu-item" @click="navigateTo('/pages/profile/agreement/index')">
           <view class="icon-wrap agreement-icon"></view>
           <text class="item-text">用户协议</text>
           <text class="item-arrow">›</text>

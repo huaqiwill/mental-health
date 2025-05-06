@@ -58,6 +58,12 @@
 			}
 		},
 		{
+			"path": "pages/profile/CustomService/index",
+			"style": {
+				"navigationBarTitleText": "联系客服"
+			}
+		},
+		{
 			"path": "pages/profile/edit/index",
 			"style": {
 				"navigationBarTitleText": "编辑"
@@ -73,6 +79,18 @@
 			"path": "pages/counselor/detail/index",
 			"style": {
 				"navigationBarTitleText": "咨询师详情"
+			}
+		},
+		{
+			"path": "pages/profile/agreement/index",
+			"style": {
+				"navigationBarTitleText": "用户协议"
+			}
+		},
+		{
+			"path": "pages/profile/privacy/index",
+			"style": {
+				"navigationBarTitleText": "隐私协议"
 			}
 		},
 		{
