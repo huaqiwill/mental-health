@@ -13,6 +13,10 @@
 </script>
 
 <style lang="scss">
-	
+	/* 首先导入uview-plus */
 	@import "uview-plus/index.scss";
+	
+	/* 然后导入我们的主题和全局样式 */
+	@import "@/static/theme.scss";
+	@import "@/static/global.scss";
 </style>

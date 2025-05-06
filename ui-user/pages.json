@@ -22,9 +22,39 @@
 			}
 		},
 		{
+			"path": "pages/course/detail/index",
+			"style": {
+				"navigationBarTitleText": "课程详情"
+			}
+		},
+		{
+			"path": "pages/order/index",
+			"style": {
+				"navigationBarTitleText": "订单"
+			}
+		},	
+		{
 			"path": "pages/profile/index",
 			"style": {
 				"navigationBarTitleText": "我的"
+			}
+		},
+		{
+			"path": "pages/profile/MyCourse/index",
+			"style": {
+				"navigationBarTitleText": "我的课程"
+			}
+		},
+		{
+			"path": "pages/counselor/detail/index",
+			"style": {
+				"navigationBarTitleText": "咨询师详情"
+			}
+		},
+		{
+			"path": "pages/login/index",
+			"style": {
+				"navigationBarTitleText": "登录"
 			}
 		}
 	],
@@ -36,9 +66,10 @@
 	},
 	"uniIdRouter": {},
 	"tabBar": {
-		"color": "",
-		"selectedColor": "",
-		"backgroundColor": "",
+		"color": "#666666",
+		"fontSize": "36rpx",
+		"selectedColor": "#E2AA59",
+		"backgroundColor": "#FFFFFF",
 		"position": "bottom",
 		"borderStyle": "black",
 		"list": [{
@@ -53,6 +84,12 @@
 				// "iconPath": "static/images/course.png",
 				// "selectedIconPath": "static/images/course-active.png"
 			},
+			{
+				"pagePath": "pages/order/index",
+				"text": "订单"
+				// "iconPath": "static/images/order.png",
+				// "selectedIconPath": "static/images/order-active.png"
+			},	
 			{
 				"pagePath": "pages/profile/index",
 				"text": "我的"
