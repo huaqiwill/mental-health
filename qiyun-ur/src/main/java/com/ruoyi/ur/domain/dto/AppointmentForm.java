@@ -1,15 +1,15 @@
-package com.ruoyi.ur.domain.entity;
+package com.ruoyi.ur.domain.dto;
 
 import lombok.Data;
+
 import java.util.Date;
 
-//预约实体类
+//心理咨询预约信息
 @Data
-public class Appointment {
+public class AppointmentForm {
     private Long appointmentId;
-    private Long counselorId;
     private Long userId;
+    private Long counselorId;
     private Date startTime;
     private Date endTime;
-    private Integer status;
 }

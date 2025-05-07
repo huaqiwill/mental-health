@@ -1,20 +1,19 @@
 package com.ruoyi.ur.domain.entity;
 
 import lombok.Data;
-import java.util.Date;
+import java.math.BigDecimal;
 
-//咨询师实体类
 @Data
 public class Counselor {
-    private Integer counselorId;
+    private Long counselorId;
     private String name;
     private String pictureUrl;
     private String personalIntroduction;
     private String expertiseAreas;
     private Integer yearsOfPractice;
     private String supportedTypes;
-    private Double teachingPrice;
-    private String counselorLevel;
+    private BigDecimal teachingPrice;
+    private Integer counselorLevel;
     private String counselorType;
     private String tags;
     private Double rating;
@@ -25,6 +24,4 @@ public class Counselor {
     private String professionalQualification;
     private String certificationCertificateUrl;
     private String workingHours;
-    private Date createTime;
-    private Date updateTime;
 }

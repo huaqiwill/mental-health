@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ruoyi.ur.mapper.CounselorMapper">
+    <!-- 查询所有咨询师 -->
+    <select id="selectCounselorList" resultType="com.ruoyi.ur.domain.entity.Counselor">
+        SELECT
+            counselor_id,
+            name,
+            picture_url,
+            personal_introduction,
+            expertise_areas,
+            years_of_practice,
+            supported_types,
+            teaching_price,
+            counselor_level,
+            counselor_type,
+            tags,
+            rating,
+            total_practice_hours,
+            good_at_problems,
+            treatment_methods,
+            consultation_duration,
+            professional_qualification,
+            certification_certificate_url,
+            working_hours
+        FROM ur_counselor
+    </select>
+
+    <!-- 根据ID查询咨询师 -->
+    <select id="selectCounselorById" parameterType="Long" resultType="com.ruoyi.ur.domain.entity.Counselor">
+        SELECT *
+        FROM ur_counselor
+        WHERE counselor_id = #{counselorId}
+    </select>
+
+    <!-- 预约咨询-->
+    <insert id="addAppointments" parameterType="com.ruoyi.ur.domain.entity.Appointment"
+            useGeneratedKeys="true" keyProperty="appointmentId">
+        INSERT INTO ur_appointment (
+            appointment_id,
+            user_id,
+            counselor_id,
+            start_time,
+            end_time,
+            status
+        ) VALUES (
+                     #{appointmentId},
+                     #{userId},
+                     #{counselorId},
+                     #{startTime},
+                     #{endTime},
+                     #{status}
+                 )
+    </insert>
+
+    <!-- 预约验证-->
+    <select id="selectAppointmentsByUserId"
+            resultType="com.ruoyi.ur.domain.entity.Appointment">
+        select user_id,status from ur_appointment
+        where user_id = #{userId}
+    </select>
+
+</mapper>
