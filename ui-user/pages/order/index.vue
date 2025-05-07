@@ -15,7 +15,7 @@
                 <u-empty mode="order" text="暂无订单"></u-empty>
             </view>
             <view v-else>
-                <view v-for="(order, index) in orderList" :key="index" class="order-item">
+                <view v-for="(order, index) in orderList" :key="index" class="order-item" @click="viewOrderDetails(order)">
                     <!-- 订单头部：订单号和状态 -->
                     <view class="order-header">
                         <text class="order-no">订单号：{{ order.orderNo }}</text>
@@ -72,7 +72,6 @@
                     </view>
                 </view>
             </view>
-
             <!-- 加载更多 -->
             <view v-if="orderList.length > 0 && hasMore" class="loading-more">
                 <u-loadmore :status="loadMoreStatus" />
@@ -84,7 +83,7 @@
 <script setup>
 import { ref, reactive, onMounted } from 'vue';
 import { useTheme } from '@/hooks/useTheme';
-
+import { useCounterStore } from '@/store';
 // 获取主题变量
 const theme = useTheme();
 
@@ -139,6 +138,10 @@ const resetList = () => {
     loadMoreStatus.value = 'loadmore';
 };
 
+// store
+
+const CounterStore = useCounterStore()
+
 // 加载订单列表
 const loadOrders = async () => {
 };
@@ -181,8 +184,10 @@ const cancelOrder = (order) => {
 };
 
 // 查看订单详情
-const viewOrderDetails = (order) => {
-
+const viewOrderDetails = (order) => {    
+    uni.navigateTo({
+        url: '/pages/order/detail/index?id=' + order.id
+    });
 };
 
 // 学习课程

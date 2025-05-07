@@ -40,6 +40,12 @@
 			}
 		},	
 		{
+			"path": "pages/order/detail/index",
+			"style": {
+				"navigationBarTitleText": "订单详情"
+			}
+		},
+		{
 			"path": "pages/order/PayPedding/index",
 			"style": {
 				"navigationBarTitleText": "待支付"
