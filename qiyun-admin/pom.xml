@@ -61,6 +61,17 @@
             <artifactId>qiyun-generator</artifactId>
         </dependency>
 
+        <!--用户模块-->
+        <dependency>
+            <groupId>com.ruoyi</groupId>
+            <artifactId>qiyun-ur</artifactId>
+        </dependency>
+
+        <!--后台模块-->
+        <dependency>
+            <groupId>com.ruoyi</groupId>
+            <artifactId>qiyun-backend</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

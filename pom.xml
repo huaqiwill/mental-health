@@ -217,6 +217,20 @@
                 <version>${ruoyi.version}</version>
             </dependency>
 
+            <!-- 用户端-->
+            <dependency>
+                <groupId>com.ruoyi</groupId>
+                <artifactId>qiyun-ur</artifactId>
+                <version>${ruoyi.version}</version>
+            </dependency>
+
+            <!-- 后台管理-->
+            <dependency>
+                <groupId>com.ruoyi</groupId>
+                <artifactId>qiyun-backend</artifactId>
+                <version>${ruoyi.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -227,6 +241,8 @@
         <module>qiyun-quartz</module>
         <module>qiyun-generator</module>
         <module>qiyun-common</module>
+        <module>qiyun-ur</module>
+
     </modules>
     <packaging>pom</packaging>
 
