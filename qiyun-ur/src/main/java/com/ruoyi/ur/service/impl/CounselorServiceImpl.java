@@ -2,8 +2,10 @@ package com.ruoyi.ur.service.impl;
 
 import com.ruoyi.common.exception.ServiceException;
 import com.ruoyi.ur.domain.dto.AppointmentForm;
+import com.ruoyi.ur.domain.dto.ReviewsForm;
 import com.ruoyi.ur.domain.entity.Appointment;
 import com.ruoyi.ur.domain.entity.Counselor;
+import com.ruoyi.ur.domain.entity.Review;
 import com.ruoyi.ur.mapper.CounselorMapper;
 import com.ruoyi.ur.service.ICounselorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +57,24 @@ public class CounselorServiceImpl implements ICounselorService {
         appointment.setStatus(1);
 
         counselorMapper.addAppointments(appointment);
-        return "预约提交成功，预约编号：" + form.getAppointmentId();
+        return "预约提交成功，预约编号：" + appointment.getAppointmentId();
     }
+
+    @Override
+    @Transactional
+    public String addReviewsForm(ReviewsForm form) {
+        Review review = new Review();
+        BeanUtils.copyProperties(form, review);
+
+        // 生成评论编号
+        String reviewId = "pl" + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        review.setReviewId(reviewId);
+
+        // 设置评论时间
+        review.setReviewTime(new Date());
+
+        counselorMapper.addReviews(review);
+        return "评论成功";
+    }
+
 }

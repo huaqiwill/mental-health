@@ -61,4 +61,21 @@
         where user_id = #{userId}
     </select>
 
+    <!-- 新增评论 -->
+    <insert id="addReviews" parameterType="com.ruoyi.ur.domain.entity.Review"
+            useGeneratedKeys="true" keyProperty="reviewId">
+        INSERT INTO ur_review (
+            review_id,
+            user_id,
+            counselor_id,
+            review_content,
+            review_time
+        ) VALUES (
+            #{reviewId},
+            #{userId},
+            #{counselorId},
+            #{reviewContent},
+            #{reviewTime}
+        )
+    </insert>
 </mapper>

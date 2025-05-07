@@ -5,7 +5,9 @@ import com.ruoyi.common.core.controller.BaseController;
 import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.ur.common.ApiResult;
 import com.ruoyi.ur.domain.dto.AppointmentForm;
+import com.ruoyi.ur.domain.dto.ReviewsForm;
 import com.ruoyi.ur.domain.entity.Counselor;
+import com.ruoyi.ur.domain.entity.Review;
 import com.ruoyi.ur.service.ICounselorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -40,6 +42,14 @@ public class CounselorsController extends BaseController {
     @PostMapping("/appointments")
     public ApiResult createAppointment(@RequestBody AppointmentForm form) {
         String result = counselorService.addAppointments(form);
+        return ApiResult.success(result);
+    }
+
+    // 咨询师评价
+    @Anonymous
+    @PostMapping("/reviews")
+    public ApiResult createReview(@RequestBody ReviewsForm form) {
+        String result = counselorService.addReviewsForm(form);
         return ApiResult.success(result);
     }
 }

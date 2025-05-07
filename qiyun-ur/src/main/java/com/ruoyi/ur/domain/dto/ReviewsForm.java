@@ -1,13 +1,11 @@
-package com.ruoyi.ur.domain.entity;
+package com.ruoyi.ur.domain.dto;
 
 import lombok.Data;
-import java.util.Date;
-//评价实体类
+
 @Data
-public class Review {
+public class ReviewsForm {
     private String reviewId;
     private Long counselorId;
     private Long userId;
     private String reviewContent;
-    private Date reviewTime;
 }
