@@ -15,12 +15,12 @@
                 <u-empty mode="order" text="暂无订单"></u-empty>
             </view>
             <view v-else>
-                <view v-for="(order, index) in orderList" :key="index" class="order-item">
+                <view v-for="(order, index) in orderList" :key="index" class="order-item" @click="viewOrderDetails(order)">
                     <!-- 订单头部：订单号和状态 -->
                     <view class="order-header">
                         <text class="order-no">订单号：{{ order.orderNo }}</text>
                         <text class="order-status" :class="getStatusClass(order.status)">{{ getStatusText(order.status)
-                            }}</text>
+                        }}</text>
                     </view>
 
                     <!-- 订单内容 -->
@@ -72,7 +72,6 @@
                     </view>
                 </view>
             </view>
-
             <!-- 加载更多 -->
             <view v-if="orderList.length > 0 && hasMore" class="loading-more">
                 <u-loadmore :status="loadMoreStatus" />
@@ -84,7 +83,7 @@
 <script setup>
 import { ref, reactive, onMounted } from 'vue';
 import { useTheme } from '@/hooks/useTheme';
-
+import { useCounterStore } from '@/store';
 // 获取主题变量
 const theme = useTheme();
 
@@ -139,6 +138,10 @@ const resetList = () => {
     loadMoreStatus.value = 'loadmore';
 };
 
+// store
+
+const CounterStore = useCounterStore()
+
 // 加载订单列表
 const loadOrders = async () => {
 };
@@ -170,7 +173,9 @@ const getOrderTypeIcon = (type) => {
 
 // 支付订单
 const payOrder = (order) => {
-
+    uni.navigateTo({
+        url: '/pages/order/PayPedding/index'
+    });
 };
 
 // 取消订单
@@ -179,8 +184,10 @@ const cancelOrder = (order) => {
 };
 
 // 查看订单详情
-const viewOrderDetails = (order) => {
-
+const viewOrderDetails = (order) => {    
+    uni.navigateTo({
+        url: '/pages/order/detail/index?id=' + order.id
+    });
 };
 
 // 学习课程
@@ -388,7 +395,7 @@ orderList.value = mockOrders;
 
     .order-actions {
         display: flex;
-        
+
         .custom-button {
             margin-left: 16rpx;
             height: 60rpx;
@@ -400,19 +407,19 @@ orderList.value = mockOrders;
             font-size: 26rpx;
             padding: 0 24rpx;
         }
-        
+
         .primary-button {
             background-color: $mg-primary;
             color: $mg-white;
             border: 1px solid $mg-primary;
         }
-        
+
         .outline-button {
             background-color: transparent;
             color: $mg-primary;
             border: 1px solid $mg-primary;
         }
-        
+
         .cancel-button {
             background-color: transparent;
             color: $mg-text-secondary;

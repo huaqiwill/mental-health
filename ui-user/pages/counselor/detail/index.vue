@@ -1,16 +1,5 @@
 <template>
-  <view class="counselor-detail">
-    <!-- 导航栏 -->
-    <view class="nav-bar">
-      <view class="nav-left" @click="goBack">
-        <text class="iconfont nav-icon">&#xe6f2;</text>
-      </view>
-      <view class="nav-title">咨询师详情</view>
-      <view class="nav-right">
-        <text class="iconfont more-icon">&#xe6c5;</text>
-      </view>
-    </view>
-    
+  <view class="counselor-detail">  
     <!-- 咨询师基本信息区域 -->
     <view class="counselor-header">
       <view class="avatar-section">
