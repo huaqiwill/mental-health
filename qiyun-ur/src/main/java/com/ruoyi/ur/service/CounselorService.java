@@ -1,12 +1,12 @@
 package com.ruoyi.ur.service;
 
-import com.ruoyi.ur.domain.entity.Counselor;
+import com.github.pagehelper.PageInfo;
+import com.ruoyi.ur.domain.dto.CounselorQueryRequest;
+import com.ruoyi.ur.domain.vo.CounselorVo;
+
 import java.util.List;
 
 public interface CounselorService {
-    Counselor getById(String id);
-    int insert(Counselor counselor);
-    int update(Counselor counselor);
-    int deleteById(String id);
-    List<Counselor> list(Counselor counselor);
+    PageInfo<CounselorVo> searchCounselors(CounselorQueryRequest request);
+    int countCounselors(CounselorQueryRequest request);
 }

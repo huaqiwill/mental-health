@@ -1,6 +1,9 @@
 package com.ruoyi.ur.service.impl;
 
-import com.ruoyi.ur.domain.entity.Counselor;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.ruoyi.ur.domain.dto.CounselorQueryRequest;
+import com.ruoyi.ur.domain.vo.CounselorVo;
 import com.ruoyi.ur.mapper.CounselorMapper;
 import com.ruoyi.ur.service.CounselorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,28 +15,17 @@ import java.util.List;
 @Service
 public class CounselorServiceImpl implements CounselorService {
 
+    @Autowired
+    private CounselorMapper counselorMapper;
     @Override
-    public Counselor getById(String id) {
-        return null;
+    public PageInfo<CounselorVo> searchCounselors(CounselorQueryRequest request) {
+        PageHelper.startPage(request.getPage(), request.getPageSize());
+        List<CounselorVo> list = counselorMapper.selectCounselors(request);
+        return new PageInfo<>(list);
     }
 
     @Override
-    public int insert(Counselor counselor) {
-        return 0;
-    }
-
-    @Override
-    public int update(Counselor counselor) {
-        return 0;
-    }
-
-    @Override
-    public int deleteById(String id) {
-        return 0;
-    }
-
-    @Override
-    public List<Counselor> list(Counselor counselor) {
-        return Collections.emptyList();
+    public int countCounselors(CounselorQueryRequest request) {
+        return counselorMapper.countCounselors(request);
     }
 }

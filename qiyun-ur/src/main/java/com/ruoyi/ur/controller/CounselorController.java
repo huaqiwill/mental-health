@@ -1,11 +1,15 @@
 package com.ruoyi.ur.controller;
 
-import com.ruoyi.common.core.controller.BaseController;
+import com.github.pagehelper.PageInfo;
+import com.ruoyi.common.annotation.Anonymous;
 import com.ruoyi.common.core.domain.AjaxResult;
-import com.ruoyi.ur.domain.entity.Counselor;
+import com.ruoyi.ur.domain.dto.CounselorQueryRequest;
+import com.ruoyi.ur.domain.vo.CounselorVo;
 import com.ruoyi.ur.service.CounselorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 import static com.ruoyi.common.core.domain.AjaxResult.success;
 
@@ -16,23 +20,15 @@ public class CounselorController{
     @Autowired
     private CounselorService counselorService;
 
-    @GetMapping("/{id}")
-    public AjaxResult getById(@PathVariable String id) {
-        return success(counselorService.getById(id));
-    }
+    // 获取咨询师信息
+    @PostMapping("/list")
+    @Anonymous
+    public AjaxResult getCounselorList(@RequestBody CounselorQueryRequest request) {
+        PageInfo<CounselorVo> list = counselorService.searchCounselors(request);
+        int total = counselorService.countCounselors(request);
 
-    @PostMapping
-    public AjaxResult add(@RequestBody Counselor counselor) {
-        return success(counselorService.insert(counselor));
+        return success()
+                .put("total", total)
+                .put("list", list);
     }
-
-    @PutMapping
-    public AjaxResult update(@RequestBody Counselor counselor) {
-        return success(counselorService.update(counselor));
-    }
-
-    @DeleteMapping("/{id}")
-    public AjaxResult delete(@PathVariable String id) {
-        return success(counselorService.deleteById(id));
-    }
-}
+  }
