@@ -29,6 +29,12 @@
           <text class="item-text">我的收藏</text>
           <text class="item-arrow">›</text>
         </view>
+
+        <view class="menu-item" @click="navigateTo('/pages/profile/BecomeCounselor/index')">
+          <view class="icon-wrap become-counselor-icon"></view>
+          <text class="item-text">成为咨询师</text>
+          <text class="item-arrow">›</text>
+        </view>
       </view>
     </view>
 

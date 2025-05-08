@@ -82,28 +82,7 @@
 
 <script setup>
 import { ref, reactive, onMounted } from 'vue';
-import { useTheme } from '@/hooks/useTheme';
 import { useCounterStore } from '@/store';
-// 获取主题变量
-const theme = useTheme();
-
-// 自定义按钮样式
-const customStyle = reactive({
-    primary: {
-        backgroundColor: theme.mgPrimary,
-        borderColor: theme.mgPrimary,
-        color: theme.mgWhite
-    },
-    details: {
-        borderColor: theme.mgPrimary,
-        color: theme.mgPrimary
-    },
-    cancel: {
-        borderColor: theme.mgPrimary,
-        color: theme.mgTextSecondary
-    }
-});
-
 // 标签页定义
 const tabs = [
     { name: '全部', status: '' },

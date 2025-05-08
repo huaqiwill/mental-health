@@ -82,6 +82,12 @@
 			}
 		},
 		{
+			"path": "pages/profile/BecomeCounselor/index",
+			"style": {
+				"navigationBarTitleText": "成为咨询师"
+			}
+		},
+		{
 			"path": "pages/counselor/detail/index",
 			"style": {
 				"navigationBarTitleText": "咨询师详情"
