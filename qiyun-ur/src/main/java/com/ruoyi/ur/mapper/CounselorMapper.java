@@ -10,7 +10,7 @@ import java.util.List;
 
 @Mapper
 public interface CounselorMapper {
-    List<Counselor> selectCounselorList(Counselor counselor);
+    List<Counselor> selectCounselorList();
     Counselor selectCounselorById(Long counselorId);
     void addAppointments(Appointment form);
     List<Appointment> selectAppointmentsByUserId(Long userId);

@@ -25,8 +25,8 @@ public class CounselorServiceImpl implements ICounselorService {
 
     //获取全部咨询师信息
     @Override
-    public List<Counselor> selectCounselorList(Counselor counselor) {
-        return counselorMapper.selectCounselorList(counselor);
+    public List<Counselor> selectCounselorList() {
+        return counselorMapper.selectCounselorList();
     }
 
     //获取某位咨询师信息

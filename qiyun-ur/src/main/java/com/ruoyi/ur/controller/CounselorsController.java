@@ -7,11 +7,8 @@ import com.ruoyi.ur.common.ApiResult;
 import com.ruoyi.ur.domain.dto.AppointmentForm;
 import com.ruoyi.ur.domain.dto.ReviewsForm;
 import com.ruoyi.ur.domain.entity.Counselor;
-import com.ruoyi.ur.domain.entity.Review;
 import com.ruoyi.ur.service.ICounselorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.xml.crypto.Data;
@@ -26,8 +23,8 @@ public class CounselorsController extends BaseController {
     // 查询咨询师列表
     @Anonymous
     @GetMapping("/list")
-    public AjaxResult list(Counselor counselor) {
-        return success(counselorService.selectCounselorList(counselor));
+    public AjaxResult list() {
+        return success(counselorService.selectCounselorList());
     }
 
     // 根据ID查询咨询师详情
