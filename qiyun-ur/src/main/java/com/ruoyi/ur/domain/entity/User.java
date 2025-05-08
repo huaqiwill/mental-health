@@ -12,6 +12,7 @@ public class User {
     private Integer age;
     private String phoneNumber;
     private String email;
+    private Integer status;
     private String account;
     private String password;
     private String avatar;
