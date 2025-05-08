@@ -1,8 +1,8 @@
 package com.ruoyi.ur.service.impl;
 
-import com.ruoyi.ur.domain.entity.Counselor;
-import com.ruoyi.ur.mapper.CounselorMapper;
-import com.ruoyi.ur.service.CounselorService;
+import com.ruoyi.ur.domain.entity.Review;
+import com.ruoyi.ur.mapper.ReviewMapper;
+import com.ruoyi.ur.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,20 +10,23 @@ import java.util.Collections;
 import java.util.List;
 
 @Service
-public class CounselorServiceImpl implements CounselorService {
+public class ReviewServiceImpl implements ReviewService {
+
+    @Autowired
+    private ReviewMapper reviewMapper;
 
     @Override
-    public Counselor getById(String id) {
+    public Review getById(String id) {
         return null;
     }
 
     @Override
-    public int insert(Counselor counselor) {
+    public int insert(Review review) {
         return 0;
     }
 
     @Override
-    public int update(Counselor counselor) {
+    public int update(Review review) {
         return 0;
     }
 
@@ -33,7 +36,7 @@ public class CounselorServiceImpl implements CounselorService {
     }
 
     @Override
-    public List<Counselor> list(Counselor counselor) {
+    public List<Review> selectList(Review review) {
         return Collections.emptyList();
     }
 }

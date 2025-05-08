@@ -4,19 +4,14 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-//用户实体类
 public class User {
-    private Integer userId;
+    private String id;
     private String nickname;
+    private String avatar;
+    private String phone;
     private String gender;
     private Integer age;
-    private String phoneNumber;
-    private String email;
-    private Integer status;
-    private String account;
-    private String password;
-    private String avatar;
-    private String introduction;
+    private String bio;
     private Date createTime;
-    private Date lastLoginTime;
+    private Date updateTime;
 }

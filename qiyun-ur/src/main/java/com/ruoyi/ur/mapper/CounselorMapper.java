@@ -1,6 +1,5 @@
 package com.ruoyi.ur.mapper;
 
-import com.ruoyi.ur.domain.dto.AppointmentForm;
 import com.ruoyi.ur.domain.entity.Appointment;
 import com.ruoyi.ur.domain.entity.Counselor;
 import com.ruoyi.ur.domain.entity.Review;

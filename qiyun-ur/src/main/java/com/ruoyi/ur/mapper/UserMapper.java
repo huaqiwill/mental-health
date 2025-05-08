@@ -5,10 +5,8 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface UserMapper {
-    // 检查用户名是否存在
-    boolean existsByUsername(String username);
-    
-    // 用户注册
-    int insertUser(User user);
-    
+    User selectById(String id);
+    int insert(User user);
+    int updateById(User user);
+    int deleteById(String id);
 }

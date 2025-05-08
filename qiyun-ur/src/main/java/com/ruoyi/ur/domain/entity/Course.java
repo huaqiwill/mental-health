@@ -2,27 +2,23 @@ package com.ruoyi.ur.domain.entity;
 
 import lombok.Data;
 import java.util.Date;
-//课程实体类
+import java.util.List;
+
 @Data
 public class Course {
-    private Integer courseId;
-    private String courseName;
-    private String courseImageUrl;
-    private String courseTags;
-    private Integer classHours;
-    private Integer totalDuration;
+    private String id;
+    private String title;
+    private String coverImage;
+    private String teacher;
+    private String teacherTitle;
+    private String teacherAvatar;
     private Double price;
-    private String address;
-    private String courseType;
-    private Date startTime;
-    private Integer detailId;
-    private String courseImagesUrls;
-    private Integer cumulativeStudents;
-    private Double courseRating;
-    private String authorName;
-    private String authorIntroduction;
-    private String courseIntroduction;
-    private String courseContent;
+    private Double originalPrice;
+    private Integer lessonCount;
+    private Integer studentCount;
+    private Double rating;
+    private List<String> tags;
+    private String description;
     private Date createTime;
     private Date updateTime;
 }

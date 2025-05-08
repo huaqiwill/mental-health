@@ -2,12 +2,13 @@ package com.ruoyi.ur.domain.entity;
 
 import lombok.Data;
 import java.util.Date;
-//评价实体类
+
 @Data
 public class Review {
     private String reviewId;
-    private Long counselorId;
-    private Long userId;
-    private String reviewContent;
-    private Date reviewTime;
+    private String counselorId;
+    private String orderId;
+    private String content;
+    private Integer rating;
+    private Date createTime;
 }

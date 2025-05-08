@@ -1,27 +1,27 @@
 package com.ruoyi.ur.domain.entity;
 
 import lombok.Data;
-import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
 
 @Data
 public class Counselor {
-    private Long counselorId;
+    private String id;
     private String name;
-    private String pictureUrl;
-    private String personalIntroduction;
-    private String expertiseAreas;
-    private Integer yearsOfPractice;
-    private String supportedTypes;
-    private BigDecimal teachingPrice;
-    private Integer counselorLevel;
-    private String counselorType;
-    private String tags;
+    private String avatar;
+    private String title;
+    private Boolean isVerified;
+    private List<String> tags;
+    private Double price;
     private Double rating;
-    private Integer totalPracticeHours;
-    private String goodAtProblems;
-    private String treatmentMethods;
-    private Integer consultationDuration;
-    private String professionalQualification;
-    private String certificationCertificateUrl;
-    private String workingHours;
+    private Integer sessionCount;
+    private String introduction;
+    private String education;
+    private String experience;
+    private List<String> certificates;
+    private List<String> services;
+    private List<String> availability;
+    private Date createTime;
+    private Date updateTime;
+    private Integer regionId;
 }

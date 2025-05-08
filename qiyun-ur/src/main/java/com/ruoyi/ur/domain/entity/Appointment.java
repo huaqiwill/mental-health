@@ -3,13 +3,15 @@ package com.ruoyi.ur.domain.entity;
 import lombok.Data;
 import java.util.Date;
 
-//预约实体类
 @Data
 public class Appointment {
-    private Long appointmentId;
-    private Long counselorId;
-    private Long userId;
-    private Date startTime;
-    private Date endTime;
+    private String id;
+    private String counselorId;
+    private String serviceId;
+    private String userId;
+    private Date date;
+    private String timeSlot;
+    private String note;
     private Integer status;
+    private Date createTime;
 }
