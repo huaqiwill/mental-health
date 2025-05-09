@@ -7,9 +7,12 @@ import java.util.Date;
 @Data
 public class Announcement {
     private String id;
-    private String content;
-    private Date publishTime;
+    private String counselorId;
+    private String serviceId;
+    private String userId;
+    private String date;
+    private String note;
+    private String timeSlot;
     private Integer status;
     private Date createTime;
-    private Date updateTime;
 }
