@@ -19,7 +19,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Override
     public String createAppointment(AppointmentRequest request) {
         // 检查是否存在未完成的预约
-        List<Announcement> existingAppointments = appointmentMapper.selectByUserAndCounselor(
+            List<Announcement> existingAppointments = appointmentMapper.selectByUserAndCounselor(
             request.getUserId(), 
             request.getCounselorId()
         );

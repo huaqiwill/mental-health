@@ -42,6 +42,6 @@
         SELECT * FROM ur_appointments
         WHERE user_id = #{userId}
         AND counselor_id = #{counselorId}
-        AND status != 2 
+        AND status != 2 AND status!= 1 
     </select>
 </mapper>

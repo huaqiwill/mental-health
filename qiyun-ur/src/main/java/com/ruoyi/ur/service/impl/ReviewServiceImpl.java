@@ -1,13 +1,13 @@
 package com.ruoyi.ur.service.impl;
 
+import com.ruoyi.ur.domain.dto.ReviewDto;
 import com.ruoyi.ur.domain.entity.Review;
 import com.ruoyi.ur.mapper.ReviewMapper;
 import com.ruoyi.ur.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.Date;
 
 @Service
 public class ReviewServiceImpl implements ReviewService {
@@ -16,27 +16,27 @@ public class ReviewServiceImpl implements ReviewService {
     private ReviewMapper reviewMapper;
 
     @Override
-    public Review getById(String id) {
-        return null;
-    }
+    public String submitReview(ReviewDto reviewDto) {
+        // 检查是否已评价过
+        Review existingReview = reviewMapper.selectByOrderId(reviewDto.getOrderId());
+        
+        Review review = new Review();
+        review.setCounselorId(reviewDto.getCounselorId());
+        review.setOrderId(reviewDto.getOrderId());
+        review.setContent(reviewDto.getContent());
+        review.setRating(reviewDto.getRating());
+        review.setCreateTime(new Date());
 
-    @Override
-    public int insert(Review review) {
-        return 0;
-    }
-
-    @Override
-    public int update(Review review) {
-        return 0;
-    }
-
-    @Override
-    public int deleteById(String id) {
-        return 0;
-    }
-
-    @Override
-    public List<Review> selectList(Review review) {
-        return Collections.emptyList();
+        if(existingReview != null) {
+            // 更新评价
+            review.setReviewId(existingReview.getReviewId());
+            reviewMapper.update(review);
+        } else {
+            // 新增评价
+            review.setReviewId("r" + System.currentTimeMillis());
+            reviewMapper.insert(review);
+        }
+        
+        return review.getReviewId();
     }
 }
