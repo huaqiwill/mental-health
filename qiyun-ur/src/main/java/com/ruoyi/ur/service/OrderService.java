@@ -1,8 +1,7 @@
 package com.ruoyi.ur.service;
 
-import com.ruoyi.ur.domain.entity.Order;
+import com.ruoyi.ur.domain.dto.OrderDetailDto;
 
 public interface OrderService {
-    Order getById(String id);
-    int insert(Order order);
+    OrderDetailDto getOrderDetailById(String id);
 }
