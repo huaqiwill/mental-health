@@ -2,6 +2,7 @@ package com.ruoyi.ur.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.ruoyi.ur.domain.dto.CourseDetailDto;
 import com.ruoyi.ur.domain.dto.CourseDto;
 import com.ruoyi.ur.mapper.CourseMapper;
 import com.ruoyi.ur.service.CourseService;
@@ -20,5 +21,9 @@ public class CourseServiceImpl implements CourseService {
         PageHelper.startPage(page, pageSize);
         List<CourseDto> list = courseMapper.selectCourses(keyword, categoryId, sortBy);
         return new PageInfo<>(list);
+    }
+
+    public CourseDetailDto getCourseDetailById(String id) {
+        return courseMapper.selectCourseDetailById(id);
     }
 }

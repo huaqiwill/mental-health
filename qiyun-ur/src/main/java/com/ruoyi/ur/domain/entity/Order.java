@@ -8,8 +8,10 @@ public class Order {
     private String id;
     private String orderNo;
     private String appointmentId;
+    private String title;
+    private String type;
     private Double price;
-    private Double discount;
+    private Double discount;    
     private Double actualPaid;
     private String paymentMethod;
     private Date paymentTime;
