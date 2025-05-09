@@ -31,4 +31,11 @@ public class CounselorController{
                 .put("total", total)
                 .put("list", list);
     }
+
+    // 获取咨询师详细信息 
+    @GetMapping("/{id}")
+    @Anonymous
+    public AjaxResult getCounselorDetail(@PathVariable String id) {
+        return AjaxResult.success(counselorService.getCounselorDetail(id));
+    }
   }

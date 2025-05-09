@@ -1,6 +1,8 @@
 package com.ruoyi.ur.mapper;
 
+import com.ruoyi.ur.domain.dto.CounselorDetailDto;
 import com.ruoyi.ur.domain.dto.CounselorQueryRequest;
+import com.ruoyi.ur.domain.dto.CounselorReviewDto;
 import com.ruoyi.ur.domain.entity.Appointment;
 import com.ruoyi.ur.domain.entity.Counselor;
 import com.ruoyi.ur.domain.entity.Review;
@@ -14,4 +16,9 @@ import java.util.List;
 public interface CounselorMapper {
     List<CounselorVo> selectCounselors(@Param("request") CounselorQueryRequest request);
     int countCounselors(@Param("request") CounselorQueryRequest request);
+    
+    CounselorDetailDto selectCounselorById(String id);
+    List<CounselorReviewDto> selectReviewsByCounselorId(String counselorId);
+
+    
 }

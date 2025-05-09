@@ -7,6 +7,7 @@ import java.util.Date;
 public class User {
     private String id;
     private String nickname;
+    private String name;
     private String avatar;
     private String phone;
     private String gender;

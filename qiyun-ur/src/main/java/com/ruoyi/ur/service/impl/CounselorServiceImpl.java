@@ -2,7 +2,9 @@ package com.ruoyi.ur.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.ruoyi.ur.domain.dto.CounselorDetailDto;
 import com.ruoyi.ur.domain.dto.CounselorQueryRequest;
+import com.ruoyi.ur.domain.dto.CounselorReviewDto;
 import com.ruoyi.ur.domain.vo.CounselorVo;
 import com.ruoyi.ur.mapper.CounselorMapper;
 import com.ruoyi.ur.service.CounselorService;
@@ -27,5 +29,15 @@ public class CounselorServiceImpl implements CounselorService {
     @Override
     public int countCounselors(CounselorQueryRequest request) {
         return counselorMapper.countCounselors(request);
+    }
+
+    @Override
+    public CounselorDetailDto getCounselorDetail(String id) {
+        CounselorDetailDto detail = counselorMapper.selectCounselorById(id);
+        
+        List<CounselorReviewDto> reviews = counselorMapper.selectReviewsByCounselorId(id);
+        detail.setReviews(reviews);
+        
+        return detail;
     }
 }
