@@ -40,4 +40,20 @@
         WHERE order_id = #{orderId}
         LIMIT 1
     </select>
+
+    <!-- 获取全部评论接口 -->
+    <select id="selectReviews" resultType="com.ruoyi.ur.domain.dto.CounselorReviewDto">
+        SELECT 
+            r.review_id AS id,
+            u.nickname AS user,
+            r.content,
+            r.rating,
+            DATE_FORMAT(r.create_time, '%Y-%m-%d') AS time
+        FROM ur_counselor_reviews r
+        JOIN ur_orders o ON r.order_id = o.id
+        JOIN ur_appointments a ON o.appointment_id = a.id
+        JOIN ur_user_info u ON a.user_id = u.id
+        WHERE r.counselor_id = #{targetId}
+        ORDER BY r.create_time DESC
+    </select>
 </mapper>

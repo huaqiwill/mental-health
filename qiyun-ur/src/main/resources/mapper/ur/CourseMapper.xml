@@ -1,5 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ruoyi.ur.mapper.CourseMapper">
-    <!-- SQL statements here -->
+
+    <resultMap type="com.ruoyi.ur.domain.dto.CourseDto" id="CourseResult">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="coverImage" column="cover_image"/>
+        <result property="teacher" column="teacher"/>
+        <result property="price" column="price"/>
+        <result property="originalPrice" column="original_price"/>
+        <result property="lessonCount" column="lesson_count"/>
+        <result property="studentCount" column="student_count"/>
+        <result property="rating" column="rating"/>
+        <result property="tags" column="tags"/>
+        <result property="description" column="description"/>
+    </resultMap>
+
+    <select id="selectCourses" resultMap="CourseResult">
+        SELECT 
+            c.id,
+            c.title,
+            c.cover_image,
+            c.teacher,
+            c.price,
+            c.original_price,
+            c.lesson_count,
+            c.student_count,
+            c.rating,
+            c.tags,
+            c.description
+        FROM ur_course_info c
+        <where>
+            <if test="keyword != null and keyword != ''">
+                AND (c.title LIKE CONCAT('%', #{keyword}, '%') 
+                OR c.description LIKE CONCAT('%', #{keyword}, '%'))
+            </if>
+            <if test="categoryId != null and categoryId != ''">
+                AND EXISTS (
+                    SELECT 1 FROM ur_disease_tags dt 
+                    WHERE dt.id = #{categoryId}
+                    AND JSON_CONTAINS(c.tags, JSON_QUOTE(dt.name), '$')
+                )
+            </if>
+        </where>
+        <choose>
+            <when test="sortBy == 'popularity'">
+                ORDER BY c.student_count DESC
+            </when>
+            <when test="sortBy == 'rating'">
+                ORDER BY c.rating DESC
+            </when>
+            <when test="sortBy == 'priceAsc'">
+                ORDER BY c.price ASC
+            </when>
+            <when test="sortBy == 'priceDesc'">
+                ORDER BY c.price DESC
+            </when>
+            <otherwise>
+                ORDER BY c.create_time DESC
+            </otherwise>
+        </choose>
+    </select>
 </mapper>

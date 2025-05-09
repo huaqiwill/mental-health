@@ -1,6 +1,8 @@
 package com.ruoyi.ur.service.impl;
 
-import com.ruoyi.ur.domain.entity.Course;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.ruoyi.ur.domain.dto.CourseDto;
 import com.ruoyi.ur.mapper.CourseMapper;
 import com.ruoyi.ur.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,27 +16,9 @@ public class CourseServiceImpl implements CourseService {
     private CourseMapper courseMapper;
 
     @Override
-    public Course getById(String id) {
-        return courseMapper.selectById(id);
-    }
-
-    @Override
-    public int insert(Course course) {
-        return courseMapper.insert(course);
-    }
-
-    @Override
-    public int update(Course course) {
-        return courseMapper.updateById(course);
-    }
-
-    @Override
-    public int deleteById(String id) {
-        return courseMapper.deleteById(id);
-    }
-
-    @Override
-    public List<Course> selectList(Course course) {
-        return courseMapper.selectList(course);
+    public PageInfo<CourseDto> getCourses(String keyword, String categoryId, String sortBy, Integer page, Integer pageSize) {
+        PageHelper.startPage(page, pageSize);
+        List<CourseDto> list = courseMapper.selectCourses(keyword, categoryId, sortBy);
+        return new PageInfo<>(list);
     }
 }

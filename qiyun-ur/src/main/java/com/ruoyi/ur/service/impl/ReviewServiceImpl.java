@@ -1,5 +1,8 @@
 package com.ruoyi.ur.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.ruoyi.ur.domain.dto.CounselorReviewDto;
 import com.ruoyi.ur.domain.dto.ReviewDto;
 import com.ruoyi.ur.domain.entity.Review;
 import com.ruoyi.ur.mapper.ReviewMapper;
@@ -8,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class ReviewServiceImpl implements ReviewService {
@@ -15,6 +19,7 @@ public class ReviewServiceImpl implements ReviewService {
     @Autowired
     private ReviewMapper reviewMapper;
 
+    // 提交评价
     @Override
     public String submitReview(ReviewDto reviewDto) {
         // 检查是否已评价过
@@ -38,5 +43,13 @@ public class ReviewServiceImpl implements ReviewService {
         }
         
         return review.getReviewId();
+    }
+
+    // 获取全部评价
+    @Override
+    public PageInfo<CounselorReviewDto> getReviews(String targetId, String targetType, Integer page, Integer pageSize) {
+        PageHelper.startPage(page, pageSize);
+        List<CounselorReviewDto> list = reviewMapper.selectReviews(targetId, targetType);
+        return new PageInfo<>(list);
     }
 }

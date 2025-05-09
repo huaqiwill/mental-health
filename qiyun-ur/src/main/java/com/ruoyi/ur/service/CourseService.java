@@ -1,12 +1,8 @@
 package com.ruoyi.ur.service;
 
-import com.ruoyi.ur.domain.entity.Course;
-import java.util.List;
+import com.github.pagehelper.PageInfo;
+import com.ruoyi.ur.domain.dto.CourseDto;
 
 public interface CourseService {
-    Course getById(String id);
-    int insert(Course course);
-    int update(Course course);
-    int deleteById(String id);
-    List<Course> selectList(Course course);
+    PageInfo<CourseDto> getCourses(String keyword, String categoryId, String sortBy, Integer page, Integer pageSize);
 }
