@@ -1,10 +1,10 @@
 package com.ruoyi.ur.service;
 
-import com.ruoyi.ur.domain.entity.User;
+import com.ruoyi.ur.domain.dto.UserDto;
+import com.ruoyi.ur.domain.dto.UserUpdateDto;
 
 public interface UserService {
-    User getById(String id);
-    int insert(User user);
-    int update(User user);
-    int deleteById(String id);
+    UserDto getUserById(String id);
+
+    int updateUserInfo(String id, UserUpdateDto dto);
 }

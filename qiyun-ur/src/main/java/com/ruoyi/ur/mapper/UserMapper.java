@@ -1,12 +1,11 @@
 package com.ruoyi.ur.mapper;
 
-import com.ruoyi.ur.domain.entity.User;
-import org.apache.ibatis.annotations.Mapper;
+import com.ruoyi.ur.domain.dto.UserDto;
+import com.ruoyi.ur.domain.dto.UserUpdateDto;
+import org.apache.ibatis.annotations.Param;
 
-@Mapper
 public interface UserMapper {
-    User selectById(String id);
-    int insert(User user);
-    int updateById(User user);
-    int deleteById(String id);
+    UserDto selectUserById(@Param("id") String id);
+
+    int updateUserInfo(@Param("id") String id, @Param("dto") UserUpdateDto dto);
 }
