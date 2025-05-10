@@ -14,4 +14,12 @@ public interface AppointmentMapper {
         @Param("userId") String userId,
         @Param("counselorId") String counselorId
     );
+
+    int updateStatus(@Param("id") String id, @Param("status") int status);
+
+    int updateAppointment(
+        @Param("id") String id,
+        @Param("date") String date,
+        @Param("timeSlot") String timeSlot,
+        @Param("note") String note);
 }

@@ -51,4 +51,17 @@ public class AppointmentServiceImpl implements AppointmentService {
         appointmentMapper.insert(appointment);
         return appointment.getId();
     }
+
+    @Override
+    public boolean cancelAppointment(String id) {
+        return appointmentMapper.updateStatus(id, 2) > 0;
+    }
+
+    @Override
+    public boolean updateAppointment(String id, String date, String timeSlot, String note) {
+        if (date == null && timeSlot == null && note == null) {
+            throw new IllegalArgumentException("至少需要提供一个修改参数");
+        }
+        return appointmentMapper.updateAppointment(id, date, timeSlot, note) > 0;
+    }
 }

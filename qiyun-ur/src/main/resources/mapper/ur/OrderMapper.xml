@@ -47,4 +47,38 @@
         LEFT JOIN ur_service s ON a.service_id = s.id
         WHERE o.id = #{id}
     </select>
+
+    <select id="selectUserAppointments" resultType="com.ruoyi.ur.domain.dto.UserAppointmentDto">
+        SELECT 
+            o.id,
+            o.order_no as orderNo,
+            o.type,
+            o.title,
+            c.name as providerName,
+            c.title as providerTitle,
+            CONCAT(a.date, ' ', a.time_slot) as appointmentTime,
+            o.payment_time as paymentTime,
+            o.price,
+            o.status,
+            o.create_time as createTime
+        FROM ur_orders o
+        LEFT JOIN ur_appointments a ON o.appointment_id = a.id
+        LEFT JOIN ur_counselor c ON a.counselor_id = c.id
+        WHERE a.user_id = #{userId}
+        <if test="status != null and status != 'all'">
+            AND o.status = #{status}
+        </if>
+        ORDER BY o.create_time DESC
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="countUserAppointments" resultType="int">
+        SELECT COUNT(*)
+        FROM ur_orders o
+        LEFT JOIN ur_appointments a ON o.appointment_id = a.id
+        WHERE a.user_id = #{userId}
+        <if test="status != null and status != 'all'">
+            AND o.status = #{status}
+        </if>
+    </select>
 </mapper>

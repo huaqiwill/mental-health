@@ -44,4 +44,22 @@
         AND counselor_id = #{counselorId}
         AND status != 2 AND status!= 1 
     </select>
+
+    <update id="updateStatus">
+        UPDATE ur_appointments 
+        SET status = #{status}
+        WHERE id = #{id}
+    </update>
+
+    <update id="updateAppointment">
+        UPDATE ur_appointments
+        <set>
+            <if test="date != null">date = #{date},</if>
+            <if test="timeSlot != null">time_slot = #{timeSlot},</if>
+            <if test="note != null">note = #{note},</if>
+        </set>
+        WHERE id = #{id}
+        <!-- 添加校验确保至少更新一个字段 -->
+        AND (#{date} IS NOT NULL OR #{timeSlot} IS NOT NULL OR #{note} IS NOT NULL)
+    </update>
 </mapper>
