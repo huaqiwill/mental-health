@@ -5,6 +5,7 @@ import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.common.utils.uuid.UUID;
 import com.ruoyi.ur.service.MinioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +22,9 @@ public class FileController {
     @Anonymous
     public AjaxResult uploadFile(@RequestParam("file") MultipartFile file) {
         try {
-            
+            if (file.isEmpty()) {
+                return AjaxResult.error("文件为空");
+            }
             String objectName = UUID.randomUUID().toString() + "-" + file.getOriginalFilename();
             String url = minioService.uploadFile(file, objectName);
             return AjaxResult.success("上传成功", url);

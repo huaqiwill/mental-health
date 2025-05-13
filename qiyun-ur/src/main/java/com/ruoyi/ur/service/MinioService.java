@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -41,7 +42,8 @@ public class MinioService {
     );
 
     // 最大文件大小 (1GB)
-//    private static final long MAX_FILE_SIZE = 10 * 1024 * 1024 *1024 *1024;
+    private static final long MAX_FILE_SIZE = 1 * 1024 * 1024 * 1024;
+
 
 
     public String uploadFile(MultipartFile file, String objectName) throws Exception {
@@ -51,9 +53,15 @@ public class MinioService {
             minioClient.makeBucket(MakeBucketArgs.builder().bucket(bucketName).build());
         }
 
-//         if (file.getSize() > MAX_FILE_SIZE) {
-//            throw new RuntimeException("文件大小不能超过1G");
-//        }
+        if (file.isEmpty()) {
+            throw new RuntimeException("上传文件为空");
+        }
+
+         if (file.getSize() > MAX_FILE_SIZE) {
+             System.out.println("原始文件名：" + file.getName());
+             System.out.println("文件大小：" + file.getSize());
+             throw new RuntimeException("文件大小不能超过1GB");
+        }
 
         // 通过扩展名和ContentType双重校验
         String originalFilename = file.getOriginalFilename();
@@ -68,15 +76,17 @@ public class MinioService {
             throw new RuntimeException("不支持的文件类型: " + contentType);
         }
         
-        minioClient.putObject(
-            PutObjectArgs.builder()
-                .bucket(bucketName)
-                .object(objectName)
-                .stream(file.getInputStream(), file.getSize(), -1)
-                .contentType(file.getContentType())
-                .build());
+        try (InputStream inputStream = file.getInputStream()) {
+            minioClient.putObject(
+                PutObjectArgs.builder()
+                    .bucket(bucketName)
+                    .object(objectName)
+                    .stream(inputStream, file.getSize(), -1)
+                    .contentType(file.getContentType())
+                    .build());
+        } // try-with-resources会自动关闭流
         
         // 直接拼接永久URL
-        return endpoint + "/" + bucketName + "/" + objectName;
+        return objectName;
     }
 }
