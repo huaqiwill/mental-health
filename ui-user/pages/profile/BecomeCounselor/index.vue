@@ -7,136 +7,90 @@
         <text class="title">加入我们的咨询师团队</text>
         <text class="desc">成为专业咨询师，帮助更多人解决心理困扰，实现自我价值。我们将对您的资质进行严格审核，确保平台服务质量。</text>
       </view>
-      
+
       <!-- 表单区域 -->
       <view class="form-area">
         <!-- 个人信息 -->
         <view class="form-section">
           <view class="section-title">基本信息</view>
-          
+
           <view class="form-item">
             <text class="label">真实姓名</text>
-            <input 
-              class="input" 
-              type="text" 
-              v-model="formData.realName" 
-              placeholder="请输入您的真实姓名"
-            />
+            <input class="input" type="text" v-model="formData.realName" placeholder="请输入您的真实姓名" />
           </view>
-          
+
           <view class="form-item">
             <text class="label">性别</text>
             <view class="radio-group">
-              <view 
-                class="radio-item" 
-                :class="{ active: formData.gender === 'male' }"
-                @click="formData.gender = 'male'"
-              >
+              <view class="radio-item" :class="{ active: formData.gender === 'male' }"
+                @click="formData.gender = 'male'">
                 <text class="radio-dot"></text>
                 <text>男</text>
               </view>
-              <view 
-                class="radio-item" 
-                :class="{ active: formData.gender === 'female' }"
-                @click="formData.gender = 'female'"
-              >
+              <view class="radio-item" :class="{ active: formData.gender === 'female' }"
+                @click="formData.gender = 'female'">
                 <text class="radio-dot"></text>
                 <text>女</text>
               </view>
             </view>
           </view>
-          
+
           <view class="form-item">
             <text class="label">联系电话</text>
-            <input 
-              class="input" 
-              type="number" 
-              v-model="formData.phone" 
-              placeholder="请输入您的联系电话"
-            />
+            <input class="input" type="number" v-model="formData.phone" placeholder="请输入您的联系电话" />
           </view>
-          
+
           <view class="form-item">
             <text class="label">邮箱</text>
-            <input 
-              class="input" 
-              type="text" 
-              v-model="formData.email" 
-              placeholder="请输入您的电子邮箱"
-            />
+            <input class="input" type="text" v-model="formData.email" placeholder="请输入您的电子邮箱" />
           </view>
         </view>
-        
+
         <!-- 专业资质 -->
         <view class="form-section">
           <view class="section-title">专业资质</view>
-          
+
           <view class="form-item">
             <text class="label">最高学历</text>
-            <picker 
-              class="picker" 
-              mode="selector" 
-              :range="educationLevels" 
-              @change="handleEducationChange"
-            >
+            <picker class="picker" mode="selector" :range="educationLevels" @change="handleEducationChange">
               <view class="picker-text">{{ formData.education || '请选择最高学历' }}</view>
               <!-- <text class="iconfont right-icon">&#xe6e1;</text> -->
             </picker>
           </view>
-          
+
           <view class="form-item">
             <text class="label">毕业院校</text>
-            <input 
-              class="input" 
-              type="text" 
-              v-model="formData.university" 
-              placeholder="请输入您的毕业院校"
-            />
+            <input class="input" type="text" v-model="formData.university" placeholder="请输入您的毕业院校" />
           </view>
-          
+
           <view class="form-item">
             <text class="label">专业方向</text>
-            <input 
-              class="input" 
-              type="text" 
-              v-model="formData.major" 
-              placeholder="如：心理学、精神医学等"
-            />
+            <input class="input" type="text" v-model="formData.major" placeholder="如：心理学、精神医学等" />
           </view>
-          
+
           <view class="form-item">
             <text class="label">从业年限</text>
-            <picker 
-              class="picker" 
-              mode="selector" 
-              :range="experienceYears" 
-              @change="handleExperienceChange"
-            >
+            <picker class="picker" mode="selector" :range="experienceYears" @change="handleExperienceChange">
               <view class="picker-text">{{ formData.years || '请选择从业年限' }}</view>
               <!-- <text class="iconfont right-icon">&#xe6e1;</text> -->
             </picker>
           </view>
-          
+
           <view class="form-item">
             <text class="label">擅长领域</text>
             <view class="tags-container">
-              <view 
-                v-for="(tag, index) in expertiseTags" 
-                :key="index"
-                class="tag"
-                :class="{ active: formData.expertise.includes(tag) }"
-                @click="toggleExpertise(tag)"
-              >
+              <view v-for="(tag, index) in expertiseTags" :key="index" class="tag"
+                :class="{ active: formData.expertise.includes(tag) }" @click="toggleExpertise(tag)">
                 {{ tag }}
               </view>
             </view>
           </view>
         </view>
-        
+
         <!-- 资质证明 -->
         <view class="form-section">
           <view class="section-title">资质证明</view>
-          
+
           <view class="form-item upload-item">
             <text class="label">职业资格证书</text>
             <view class="upload-area" @click="uploadCertificate">
@@ -147,7 +101,7 @@
               <image v-else class="uploaded-image" :src="formData.certificate" mode="aspectFill"></image>
             </view>
           </view>
-          
+
           <view class="form-item upload-item">
             <text class="label">身份证照片</text>
             <view class="upload-area" @click="uploadIdCard">
@@ -159,23 +113,19 @@
             </view>
           </view>
         </view>
-        
+
         <!-- 个人简介 -->
         <view class="form-section">
           <view class="section-title">个人简介</view>
-          
+
           <view class="form-item">
             <text class="label">个人简介</text>
-            <textarea 
-              class="textarea" 
-              v-model="formData.introduction" 
-              placeholder="请简要描述您的工作经历、专业背景和咨询风格等（300字以内）"
-              maxlength="300"
-            ></textarea>
+            <textarea class="textarea" v-model="formData.introduction" placeholder="请简要描述您的工作经历、专业背景和咨询风格等（300字以内）"
+              maxlength="300"></textarea>
             <text class="word-count">{{ formData.introduction.length }}/300</text>
           </view>
         </view>
-        
+
         <!-- 提交按钮 -->
         <view class="submit-area">
           <button class="submit-btn" @click="submitApplication">提交申请</button>
@@ -267,6 +217,11 @@ const uploadIdCard = () => {
 
 // 提交申请
 const submitApplication = () => {
+  // 开发阶段跳过验证
+  uni.navigateTo({
+    url: '/pages/counselor/workspace/index'
+  })
+
   // 表单验证
   if (!formData.realName) {
     return uni.showToast({
@@ -274,75 +229,75 @@ const submitApplication = () => {
       icon: 'none'
     });
   }
-  
+
   if (!formData.gender) {
     return uni.showToast({
       title: '请选择性别',
       icon: 'none'
     });
   }
-  
+
   if (!formData.phone) {
     return uni.showToast({
       title: '请输入联系电话',
       icon: 'none'
     });
   }
-  
+
   if (!formData.education) {
     return uni.showToast({
       title: '请选择最高学历',
       icon: 'none'
     });
   }
-  
+
   if (!formData.university) {
     return uni.showToast({
       title: '请输入毕业院校',
       icon: 'none'
     });
   }
-  
+
   if (!formData.years) {
     return uni.showToast({
       title: '请选择从业年限',
       icon: 'none'
     });
   }
-  
+
   if (formData.expertise.length === 0) {
     return uni.showToast({
       title: '请选择擅长领域',
       icon: 'none'
     });
   }
-  
+
   if (!formData.certificate) {
     return uni.showToast({
       title: '请上传职业资格证书',
       icon: 'none'
     });
   }
-  
+
   if (!formData.idCard) {
     return uni.showToast({
       title: '请上传身份证照片',
       icon: 'none'
     });
   }
-  
+
   if (!formData.introduction) {
     return uni.showToast({
       title: '请填写个人简介',
       icon: 'none'
     });
   }
-  
+
   // TODO: 调用申请成为咨询师API
   uni.showLoading({
     title: '提交中...'
   });
-  
+
   setTimeout(() => {
     uni.hideLoading();
     uni.showModal({
@@ -390,7 +345,7 @@ const goBack = () => {
   border-radius: 12rpx;
   padding: 30rpx;
   margin-bottom: 30rpx;
-  
+
   .title {
     font-size: 32rpx;
     font-weight: bold;
@@ -398,7 +353,7 @@ const goBack = () => {
     margin-bottom: 16rpx;
     display: block;
   }
-  
+
   .desc {
     font-size: 28rpx;
     color: $mg-text-secondary;
@@ -411,14 +366,14 @@ const goBack = () => {
   box-sizing: border-box;
   width: 100%;
   margin: 0 auto;
-  
+
   .form-section {
     box-sizing: border-box;
     background-color: $mg-white;
     border-radius: 12rpx;
     padding: 30rpx;
     margin-bottom: 30rpx;
-    
+
     .section-title {
       font-size: 32rpx;
       font-weight: 500;
@@ -426,7 +381,7 @@ const goBack = () => {
       margin-bottom: 30rpx;
       position: relative;
       padding-left: 20rpx;
-      
+
       &::before {
         content: '';
         position: absolute;
@@ -438,17 +393,18 @@ const goBack = () => {
         border-radius: 4rpx;
       }
     }
-    
+
     .form-item {
       margin-bottom: 30rpx;
       box-sizing: border-box;
+
       .label {
         font-size: 28rpx;
         color: $mg-text-secondary;
         margin-bottom: 16rpx;
         display: block;
       }
-      
+
       .input {
         box-sizing: border-box;
         width: 100%;
@@ -459,7 +415,7 @@ const goBack = () => {
         font-size: 28rpx;
         color: $mg-text-primary;
       }
-      
+
       .textarea {
         box-sizing: border-box;
         width: 100%;
@@ -470,7 +426,7 @@ const goBack = () => {
         font-size: 28rpx;
         color: $mg-text-primary;
       }
-      
+
       .word-count {
         font-size: 24rpx;
         color: $mg-text-tertiary;
@@ -478,15 +434,15 @@ const goBack = () => {
         display: block;
         margin-top: 8rpx;
       }
-      
+
       .radio-group {
         display: flex;
-        
+
         .radio-item {
           display: flex;
           align-items: center;
           margin-right: 60rpx;
-          
+
           .radio-dot {
             width: 40rpx;
             height: 40rpx;
@@ -494,7 +450,7 @@ const goBack = () => {
             border: 2rpx solid $mg-border-medium;
             margin-right: 10rpx;
             position: relative;
-            
+
             &::after {
               content: '';
               position: absolute;
@@ -508,11 +464,11 @@ const goBack = () => {
               opacity: 0;
             }
           }
-          
+
           &.active {
             .radio-dot {
               border-color: $mg-primary;
-              
+
               &::after {
                 opacity: 1;
               }
@@ -520,7 +476,7 @@ const goBack = () => {
           }
         }
       }
-      
+
       .picker {
         box-sizing: border-box;
         width: 100%;
@@ -531,22 +487,22 @@ const goBack = () => {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        
+
         .picker-text {
           font-size: 28rpx;
           color: $mg-text-primary;
         }
-        
+
         .right-icon {
           font-size: 32rpx;
           color: $mg-text-tertiary;
         }
       }
-      
+
       .tags-container {
         display: flex;
         flex-wrap: wrap;
-        
+
         .tag {
           height: 60rpx;
           padding: 0 30rpx;
@@ -559,7 +515,7 @@ const goBack = () => {
           justify-content: center;
           font-size: 26rpx;
           color: $mg-text-secondary;
-          
+
           &.active {
             background-color: $mg-bg-gold-light;
             color: $mg-primary;
@@ -568,7 +524,7 @@ const goBack = () => {
         }
       }
     }
-    
+
     .upload-item {
       .upload-area {
         width: 100%;
@@ -576,7 +532,7 @@ const goBack = () => {
         background-color: $mg-bg-secondary;
         border-radius: 8rpx;
         overflow: hidden;
-        
+
         .upload-placeholder {
           width: 100%;
           height: 100%;
@@ -584,19 +540,19 @@ const goBack = () => {
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          
+
           .upload-icon {
             font-size: 48rpx;
             color: $mg-text-tertiary;
             margin-bottom: 16rpx;
           }
-          
+
           .upload-text {
             font-size: 26rpx;
             color: $mg-text-tertiary;
           }
         }
-        
+
         .uploaded-image {
           width: 100%;
           height: 100%;
@@ -613,7 +569,7 @@ const goBack = () => {
   align-items: center;
   margin: 40rpx 0 100rpx;
   box-sizing: border-box;
-  
+
   .submit-btn {
     width: 90%;
     height: 88rpx;
@@ -625,11 +581,11 @@ const goBack = () => {
     align-items: center;
     justify-content: center;
   }
-  
+
   .tip-text {
     font-size: 24rpx;
     color: $mg-text-tertiary;
     margin-top: 20rpx;
   }
 }
-</style> 
+</style>

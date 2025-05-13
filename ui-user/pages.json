@@ -94,6 +94,36 @@
 			}
 		},
 		{
+			"path": "pages/counselor/workspace/index",
+			"style": {
+				"navigationBarTitleText": "咨询师工作台"
+			}	
+		},
+		{
+			"path": "pages/counselor/time-slots/index",
+			"style": {
+				"navigationBarTitleText": "预约时间"
+			}
+		},
+		{
+			"path": "pages/counselor/appointments/index",
+			"style": {
+				"navigationBarTitleText": "预约管理"
+			}
+		},
+		{
+			"path": "pages/counselor/clients/index",
+			"style": {
+				"navigationBarTitleText": "客户管理"
+			}
+		},
+		{
+			"path": "pages/counselor/profile/index",
+			"style": {
+				"navigationBarTitleText": "咨询师资料"
+			}
+		},
+		{
 			"path": "pages/profile/agreement/index",
 			"style": {
 				"navigationBarTitleText": "用户协议"
