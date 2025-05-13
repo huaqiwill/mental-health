@@ -1,20 +1,23 @@
 package com.ruoyi.ur.service;
 
-import io.minio.BucketExistsArgs;
-import io.minio.MakeBucketArgs;
-import io.minio.MinioClient;
-import io.minio.PutObjectArgs;
-import io.minio.GetPresignedObjectUrlArgs;
+import io.minio.*;
 import io.minio.http.Method;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
+
+import io.minio.ObjectStat; 
 
 @Service
 public class MinioService {
@@ -98,14 +101,45 @@ public class MinioService {
         );
     }
 
-    public String getVideoPreviewUrl(String objectName) throws Exception {
-        return minioClient.getPresignedObjectUrl(
-            GetPresignedObjectUrlArgs.builder()
-                .method(Method.GET)
+    // 视频流处理
+    public ResponseEntity<Resource> streamVideo(String objectName, String rangeHeader) throws Exception {
+        // 获取视频元数据
+        ObjectStat stat = minioClient.statObject(bucketName, objectName);
+        
+        long fileSize = stat.length();
+        String contentType = stat.contentType();
+        
+        // 准备响应头
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.parseMediaType(contentType));
+        headers.set("Accept-Ranges", "bytes");
+        headers.set("Content-Disposition", "inline");
+        
+        // 处理范围请求
+        long start = 0;
+        long end = fileSize - 1;
+        
+        if (rangeHeader != null && rangeHeader.startsWith("bytes=")) {
+            String[] ranges = rangeHeader.substring(6).split("-");
+            start = Long.parseLong(ranges[0]);
+            end = ranges.length > 1 ? Long.parseLong(ranges[1]) : fileSize - 1;
+            headers.set("Content-Range", "bytes " + start + "-" + end + "/" + fileSize);
+        }
+        
+        // 获取视频流
+        InputStream stream = minioClient.getObject(
+            GetObjectArgs.builder()
                 .bucket(bucketName)
                 .object(objectName)
-                .responseHeader("Content-Disposition", "inline")
+                .offset(start)
+                .length(end - start + 1)
                 .build()
         );
+        
+        headers.setContentLength(end - start + 1);
+        
+        return ResponseEntity.status(rangeHeader != null ? HttpStatus.PARTIAL_CONTENT : HttpStatus.OK)
+            .headers(headers)
+            .body(new InputStreamResource(stream));
     }
 }

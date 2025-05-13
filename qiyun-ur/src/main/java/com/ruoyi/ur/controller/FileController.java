@@ -5,6 +5,8 @@ import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.common.utils.uuid.UUID;
 import com.ruoyi.ur.service.MinioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -50,12 +52,13 @@ public class FileController {
 
     @GetMapping("/preview/video/{objectName}")
     @Anonymous
-    public ResponseEntity<String> previewVideo(@PathVariable String objectName) {
+    public ResponseEntity<Resource> previewVideo(
+            @PathVariable String objectName,
+            @RequestHeader(value = "Range", required = false) String rangeHeader) {
         try {
-            String url = minioService.getVideoPreviewUrl(objectName);
-            return ResponseEntity.ok(url);
+            return minioService.streamVideo(objectName, rangeHeader);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("视频不存在");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
 }
