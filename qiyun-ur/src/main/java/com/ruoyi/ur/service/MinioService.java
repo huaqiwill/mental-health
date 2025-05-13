@@ -84,8 +84,7 @@ public class MinioService {
                     .stream(inputStream, file.getSize(), -1)
                     .contentType(file.getContentType())
                     .build());
-        } // try-with-resources会自动关闭流
-        
+        } 
         // 直接拼接永久URL
         return objectName;
     }
