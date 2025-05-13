@@ -6,10 +6,7 @@ import com.ruoyi.common.utils.uuid.UUID;
 import com.ruoyi.ur.service.MinioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
@@ -25,7 +22,7 @@ public class FileController {
             if (file.isEmpty()) {
                 return AjaxResult.error("文件为空");
             }
-            String objectName = UUID.randomUUID().toString() + "-" + file.getOriginalFilename();
+            String objectName = UUID.randomUUID().toString();
             String url = minioService.uploadFile(file, objectName);
             return AjaxResult.success("上传成功", url);
         
@@ -37,6 +34,28 @@ public class FileController {
 
             return AjaxResult.error("上传失败: " + e.getMessage());
         
+        }
+    }
+
+    @GetMapping("/preview/{objectName}")
+    @Anonymous
+    public AjaxResult getFileUrl(@PathVariable String objectName) {
+        try {
+            String url = minioService.getPreviewUrl(objectName);
+            return AjaxResult.success(url);
+        } catch (Exception e) {
+            return AjaxResult.error("文件为空");
+        }
+    }
+
+    @GetMapping("/preview/video/{objectName}")
+    @Anonymous
+    public ResponseEntity<String> previewVideo(@PathVariable String objectName) {
+        try {
+            String url = minioService.getVideoPreviewUrl(objectName);
+            return ResponseEntity.ok(url);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("视频不存在");
         }
     }
 }

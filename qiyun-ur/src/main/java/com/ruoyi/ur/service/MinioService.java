@@ -25,19 +25,18 @@ public class MinioService {
     @Value("${minio.bucketName}")
     private String bucketName;
 
-    @Value("${minio.endpoint}")
-    private String endpoint;
 
     private static final List<String> ALLOWED_FILE_TYPES = Arrays.asList(
         "image/jpeg", "image/png", "image/gif", 
         "video/mp4", "video/quicktime", "video/x-msvideo",
+        "video/x-matroska",
         "application/pdf", "application/msword"
     );
 
-    // 根据文件扩展名校验（更可靠的方式）
+    // 根据文件扩展名校验
     private static final List<String> ALLOWED_EXTENSIONS = Arrays.asList(
         ".jpg", ".jpeg", ".png", ".gif",
-        ".mp4", ".mov", ".avi",
+        ".mp4", ".mov", ".avi",".mkv",
         ".pdf", ".doc", ".docx"
     );
 
@@ -85,7 +84,28 @@ public class MinioService {
                     .contentType(file.getContentType())
                     .build());
         } 
-        // 直接拼接永久URL
         return objectName;
+    }
+
+    // 文件获取
+    public String getPreviewUrl(String objectName) throws Exception {
+        return minioClient.getPresignedObjectUrl(
+            GetPresignedObjectUrlArgs.builder()
+                .method(Method.GET)
+                .bucket(bucketName)
+                .object(objectName)
+                .build()
+        );
+    }
+
+    public String getVideoPreviewUrl(String objectName) throws Exception {
+        return minioClient.getPresignedObjectUrl(
+            GetPresignedObjectUrlArgs.builder()
+                .method(Method.GET)
+                .bucket(bucketName)
+                .object(objectName)
+                .responseHeader("Content-Disposition", "inline")
+                .build()
+        );
     }
 }
