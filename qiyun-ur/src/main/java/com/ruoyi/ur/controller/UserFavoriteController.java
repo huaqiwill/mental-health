@@ -3,11 +3,10 @@ package com.ruoyi.ur.controller;
 import com.ruoyi.common.annotation.Anonymous;
 import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.ur.domain.entity.UserFavorite;
-import com.ruoyi.ur.service.UserFavoriteService;
+import com.ruoyi.ur.service.IUserFavoriteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -15,19 +14,19 @@ import java.util.Map;
 public class UserFavoriteController {
 
     @Autowired
-    private UserFavoriteService userFavoriteService;
+    private IUserFavoriteService IUserFavoriteService;
 
     @PostMapping
     @Anonymous
     public AjaxResult addFavorite(@RequestBody UserFavorite userFavorite) {
-        return userFavoriteService.addFavorite(userFavorite) 
+        return IUserFavoriteService.addFavorite(userFavorite)
             ? AjaxResult.success() : AjaxResult.error("收藏失败");
     }
 
     @DeleteMapping("/{id}")
     @Anonymous
     public AjaxResult removeFavorite(@PathVariable String id) {
-        return userFavoriteService.removeFavorite(id) 
+        return IUserFavoriteService.removeFavorite(id)
             ? AjaxResult.success() : AjaxResult.error("取消收藏失败");
     }
 
@@ -39,7 +38,7 @@ public class UserFavoriteController {
             @RequestParam String userId,
             @RequestParam String itemId,
             @RequestParam String itemType) {
-        boolean isFavorited = userFavoriteService.isItemFavorited(userId, itemId, itemType);
+        boolean isFavorited = IUserFavoriteService.isItemFavorited(userId, itemId, itemType);
         return AjaxResult.success(isFavorited);
     }
 
@@ -50,7 +49,7 @@ public class UserFavoriteController {
         @RequestParam(defaultValue = "1") Integer page,
         @RequestParam(defaultValue = "10") Integer pageSize) {
         
-        Map<String, Object> result = userFavoriteService.getCounselorFavorites(userId,type ,page, pageSize);
+        Map<String, Object> result = IUserFavoriteService.getCounselorFavorites(userId,type ,page, pageSize);
         return AjaxResult.success(result);
     }
 }

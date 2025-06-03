@@ -2,7 +2,7 @@ package com.ruoyi.ur.service.impl;
 
 import com.ruoyi.ur.domain.entity.UserFavorite;
 import com.ruoyi.ur.mapper.UserFavoriteMapper;
-import com.ruoyi.ur.service.UserFavoriteService;
+import com.ruoyi.ur.service.IUserFavoriteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
-public class UserFavoriteServiceImpl implements UserFavoriteService {
+public class IUserFavoriteServiceImpl implements IUserFavoriteService {
 
     @Autowired
     private UserFavoriteMapper userFavoriteMapper;

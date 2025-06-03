@@ -5,9 +5,7 @@ import com.ruoyi.ur.domain.dto.CounselorDetailDto;
 import com.ruoyi.ur.domain.dto.CounselorQueryRequest;
 import com.ruoyi.ur.domain.vo.CounselorVo;
 
-import java.util.List;
-
-public interface CounselorService {
+public interface ICounselorService {
     PageInfo<CounselorVo> searchCounselors(CounselorQueryRequest request);
     int countCounselors(CounselorQueryRequest request);
     CounselorDetailDto getCounselorDetail(String id);

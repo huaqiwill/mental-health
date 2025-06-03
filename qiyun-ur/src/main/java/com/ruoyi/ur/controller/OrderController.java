@@ -1,11 +1,9 @@
 package com.ruoyi.ur.controller;
 
 import com.ruoyi.common.annotation.Anonymous;
-import com.ruoyi.common.core.controller.BaseController;
 import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.ur.domain.dto.OrderDetailDto;
-import com.ruoyi.ur.domain.entity.Order;
-import com.ruoyi.ur.service.OrderService;
+import com.ruoyi.ur.service.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +15,7 @@ import java.util.Map;
 public class OrderController {
 
     @Autowired
-    private OrderService orderService;
+    private IOrderService orderService;
 
     @GetMapping("/{id}")
     @Anonymous

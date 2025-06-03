@@ -2,9 +2,8 @@ package com.ruoyi.ur.service.impl;
 
 import com.ruoyi.ur.domain.dto.OrderDetailDto;
 import com.ruoyi.ur.domain.dto.UserAppointmentDto;
-import com.ruoyi.ur.domain.entity.Order;
 import com.ruoyi.ur.mapper.OrderMapper;
-import com.ruoyi.ur.service.OrderService;
+import com.ruoyi.ur.service.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class OrderServiceImpl implements OrderService {
+public class IOrderServiceImpl implements IOrderService {
 
     @Autowired
     private OrderMapper orderMapper;

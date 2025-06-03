@@ -3,12 +3,12 @@ package com.ruoyi.ur.service.impl;
 import com.ruoyi.ur.domain.dto.UserDto;
 import com.ruoyi.ur.domain.dto.UserUpdateDto;
 import com.ruoyi.ur.mapper.UserMapper;
-import com.ruoyi.ur.service.UserService;
+import com.ruoyi.ur.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class IUserServiceImpl implements IUserService {
 
     @Autowired
     private UserMapper userMapper;

@@ -5,11 +5,9 @@ import com.ruoyi.common.annotation.Anonymous;
 import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.ur.domain.dto.CounselorQueryRequest;
 import com.ruoyi.ur.domain.vo.CounselorVo;
-import com.ruoyi.ur.service.CounselorService;
+import com.ruoyi.ur.service.ICounselorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 import static com.ruoyi.common.core.domain.AjaxResult.success;
 
@@ -18,14 +16,14 @@ import static com.ruoyi.common.core.domain.AjaxResult.success;
 public class CounselorController{
     
     @Autowired
-    private CounselorService counselorService;
+    private ICounselorService ICounselorService;
 
     // 获取咨询师信息
     @PostMapping("/list")
     @Anonymous
     public AjaxResult getCounselorList(@RequestBody CounselorQueryRequest request) {
-        PageInfo<CounselorVo> list = counselorService.searchCounselors(request);
-        int total = counselorService.countCounselors(request);
+        PageInfo<CounselorVo> list = ICounselorService.searchCounselors(request);
+        int total = ICounselorService.countCounselors(request);
 
         return success()
                 .put("total", total)
@@ -36,6 +34,6 @@ public class CounselorController{
     @GetMapping("/{id}")
     @Anonymous
     public AjaxResult getCounselorDetail(@PathVariable String id) {
-        return AjaxResult.success(counselorService.getCounselorDetail(id));
+        return AjaxResult.success(ICounselorService.getCounselorDetail(id));
     }
   }

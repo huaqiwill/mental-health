@@ -6,7 +6,7 @@ import com.ruoyi.ur.domain.dto.CounselorReviewDto;
 import com.ruoyi.ur.domain.dto.ReviewDto;
 import com.ruoyi.ur.domain.entity.Review;
 import com.ruoyi.ur.mapper.ReviewMapper;
-import com.ruoyi.ur.service.ReviewService;
+import com.ruoyi.ur.service.IReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class ReviewServiceImpl implements ReviewService {
+public class IReviewServiceImpl implements IReviewService {
 
     @Autowired
     private ReviewMapper reviewMapper;

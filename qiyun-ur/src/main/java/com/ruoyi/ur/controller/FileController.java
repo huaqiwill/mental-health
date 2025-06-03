@@ -3,7 +3,7 @@ package com.ruoyi.ur.controller;
 import com.ruoyi.common.annotation.Anonymous;
 import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.common.utils.uuid.UUID;
-import com.ruoyi.ur.service.MinioService;
+import com.ruoyi.ur.service.IMinioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/file")
 public class FileController {
     @Autowired
-    private MinioService minioService;
+    private IMinioService minioService;
 
     @PostMapping(value = "/upload")
     @Anonymous
@@ -27,15 +27,15 @@ public class FileController {
             String objectName = UUID.randomUUID().toString();
             String url = minioService.uploadFile(file, objectName);
             return AjaxResult.success("上传成功", url);
-        
-        }catch (RuntimeException e) {
 
-            return AjaxResult.error(e.getMessage()); 
+        } catch (RuntimeException e) {
+
+            return AjaxResult.error(e.getMessage());
 
         } catch (Exception e) {
 
             return AjaxResult.error("上传失败: " + e.getMessage());
-        
+
         }
     }
 

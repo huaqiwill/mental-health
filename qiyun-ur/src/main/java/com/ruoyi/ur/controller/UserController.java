@@ -4,7 +4,7 @@ import com.ruoyi.common.annotation.Anonymous;
 import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.ur.domain.dto.UserDto;
 import com.ruoyi.ur.domain.dto.UserUpdateDto;
-import com.ruoyi.ur.service.UserService;
+import com.ruoyi.ur.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private IUserService userService;
 
     @GetMapping("/{id}")
     @Anonymous

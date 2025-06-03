@@ -3,15 +3,14 @@ package com.ruoyi.ur.service.impl;
 import com.ruoyi.ur.domain.dto.AppointmentRequest;
 import com.ruoyi.ur.domain.entity.Announcement;
 import com.ruoyi.ur.mapper.AppointmentMapper;
-import com.ruoyi.ur.service.AppointmentService;
+import com.ruoyi.ur.service.IAppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @Service
-public class AppointmentServiceImpl implements AppointmentService {
+public class IAppointmentServiceImpl implements IAppointmentService {
 
     @Autowired
     private AppointmentMapper appointmentMapper;

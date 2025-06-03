@@ -5,7 +5,7 @@ import com.ruoyi.common.annotation.Anonymous;
 import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.ur.domain.dto.CounselorReviewDto;
 import com.ruoyi.ur.domain.dto.ReviewDto;
-import com.ruoyi.ur.service.ReviewService;
+import com.ruoyi.ur.service.IReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.*;
 public class ReviewController {
 
     @Autowired
-    private ReviewService reviewService;
+    private IReviewService IReviewService;
 
     @PostMapping("/submit")
     @Anonymous
     public AjaxResult submitReview(@RequestBody ReviewDto reviewDto) {
-        return AjaxResult.success(reviewService.submitReview(reviewDto));
+        return AjaxResult.success(IReviewService.submitReview(reviewDto));
     }
 
     @GetMapping("/list")
@@ -30,7 +30,7 @@ public class ReviewController {
             @RequestParam(defaultValue = "1") Integer page,
             @RequestParam(defaultValue = "10") Integer pageSize) {
         
-        PageInfo<CounselorReviewDto> pageInfo = reviewService.getReviews(targetId, targetType, page, pageSize);
+        PageInfo<CounselorReviewDto> pageInfo = IReviewService.getReviews(targetId, targetType, page, pageSize);
         return AjaxResult.success(pageInfo);
     }
 }

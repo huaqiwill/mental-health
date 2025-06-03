@@ -7,14 +7,14 @@ import com.ruoyi.ur.domain.dto.CounselorQueryRequest;
 import com.ruoyi.ur.domain.dto.CounselorReviewDto;
 import com.ruoyi.ur.domain.vo.CounselorVo;
 import com.ruoyi.ur.mapper.CounselorMapper;
-import com.ruoyi.ur.service.CounselorService;
+import com.ruoyi.ur.service.ICounselorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CounselorServiceImpl implements CounselorService {
+public class ICounselorServiceImpl implements ICounselorService {
 
     @Autowired
     private CounselorMapper counselorMapper;
