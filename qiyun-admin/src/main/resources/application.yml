@@ -139,7 +139,7 @@ minio:
   accessKey: WEtGnshgwcKVc3dW8VCA
   secretKey: Oi5OVFJZt0Vdn6siG4lCeCI0C6Xki7WZh7hm2sGd
   bucketName: health
-  allowed-file-types: 
+  allowed-file-types:
     - image/jpeg
     - image/png
     - image/gif
@@ -159,3 +159,11 @@ minio:
     - .doc
     - .docx
   max-file-size: 1048576000 # 1000MB
+
+# 微信小程序配置
+wx:
+  miniapp:
+    appid: your_appid_here
+    secret: your_secret_here
+    # 微信小程序登录凭证校验请求地址
+    code2session-url: https://api.weixin.qq.com/sns/jscode2session
