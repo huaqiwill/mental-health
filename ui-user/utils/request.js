@@ -3,6 +3,7 @@
  * 基于uni.request的二次封装，使用类似axios的API风格
  */
 import config from './config';
+import { getToken } from './auth';
 
 // 基础URL配置
 const BASE_URL = config.api.baseUrl;
@@ -14,7 +15,7 @@ const TIMEOUT = config.api.timeout;
 let requestQueue = [];
 
 // token存储
-let accessToken = '';
+let accessToken = getToken();
 
 /**
  * 刷新token方法
